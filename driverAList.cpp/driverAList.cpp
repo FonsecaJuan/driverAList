@@ -25,6 +25,8 @@
 using namespace std;
 #include "AList.h"
 
+void insertFront(AList<short>, short);
+void isEmptyOrFull(AList<short>);
 //*****************************************************************************************************
 
 int main()
@@ -35,14 +37,7 @@ int main()
     
     AList <short> shortList(3);
     
-    if (shortList.isEmpty())
-    {
-        cout << "List is empty" << endl;
-    }
-    else if (shortList.isFull())
-    {
-        cout << "List is full" << endl;
-    }
+    isEmptyOrFull(shortList);
     
     if (shortList.insertFront(3))
     {
@@ -54,7 +49,7 @@ int main()
     }
     else
     {
-        cout << "Unable to insert the value 3"; // soy el mas maricon 
+        cout << "Unable to insert the value 3"; // soy el mas maricon
     }
 //    
 //    if (shortList.insertBack(3))
@@ -365,7 +360,17 @@ int main()
 //        cout << "List is full" << endl;
 //    }
 }
-
+void isEmptyOrFull(AList<short> shortList)
+{
+    if (shortList.isEmpty())
+    {
+        cout << "List is empty" << endl;
+    }
+    else if (shortList.isFull())
+    {
+        cout << "List is full" << endl;
+    }
+}
 //*****************************************************************************************************
 
 /*
