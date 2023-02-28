@@ -44,18 +44,18 @@ int main()
         cout << "List is full" << endl;
     }
     
-//    if (shortList.insertFront(3))
-//    {
-//        shortList.display();
-//        shortList.getSmallest(min);
-//        
-//        cout << endl << "capacity is " << shortList.getCapacity() << "\t numValues is "
-//        << shortList.getNumValues() << "\t smallest value is " << min << endl;
-//    }
-//    else
-//    {
-//        cout << "Unable to insert the value 3";
-//    }
+    if (shortList.insertFront(3))
+    {
+        shortList.display();
+        shortList.getSmallest(min);
+        
+        cout << endl << "capacity is " << shortList.getCapacity() << "\t numValues is "
+        << shortList.getNumValues() << "\t smallest value is " << min << endl;
+    }
+    else
+    {
+        cout << "Unable to insert the value 3"; // soy el mas maricon 
+    }
 //    
 //    if (shortList.insertBack(3))
 //    {
