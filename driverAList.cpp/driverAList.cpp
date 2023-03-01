@@ -14,7 +14,8 @@
 //
 //
 //        This program works with an array and allows you to insert a new element either front, back
-//        or at an specific index. It also returns the smallest value inside the array.
+//        or at an specific index. It also works with retrieve functions and tells the user if list
+//        is either empty, full, or clear. 
 //
 //        Other files required: AList.h
 //
@@ -25,8 +26,6 @@
 using namespace std;
 #include "AList.h"
 
-void insertFront(AList<short>, short);
-void isEmptyOrFull(AList<short>);
 //*****************************************************************************************************
 
 int main()
@@ -37,7 +36,15 @@ int main()
     
     AList <short> shortList(3);
     
-//    isEmptyOrFull(shortList);
+    if (shortList.isEmpty())
+    {
+        cout << "List is empty" << endl;
+    }
+    else if (shortList.isFull())
+    {
+        cout << "List is full" << endl;
+    }
+    
     shortList.insertFront(4);
     shortList.insertFront(8);
     shortList.insertFront(9);
@@ -55,24 +62,19 @@ int main()
         cout << "Unable to insert the value 3";
     }
     
-//    isEmptyOrFull(shortList);
-    
-//
-//    if (shortList.insertBack(3))
-//    {
-//        shortList.display();
-//        shortList.getSmallest(min);
-//
-//        cout << endl << "capacity is " << shortList.getCapacity() << "\t numValues is "
-//        << shortList.getNumValues() << "\t smallest value is " << min << endl;
-//    }
-//    else
-//    {
-//        cout << "Unable to insert the value 3";
-//    }
-//
-//    isEmptyOrFull(shortList);
-//
+    if (shortList.insertBack(3))
+    {
+        shortList.display();
+        shortList.getSmallest(min);
+
+        cout << endl << "capacity is " << shortList.getCapacity() << "\t numValues is "
+        << shortList.getNumValues() << "\t smallest value is " << min << endl;
+    }
+    else
+    {
+        cout << "Unable to insert the value 3";
+    }
+
     if (shortList.insertAtIndex(5,1))
     {
         shortList.display();
@@ -85,9 +87,16 @@ int main()
     {
         cout << "Unable to insert the value 5 at index 1";
     }
-//
-//    isEmptyOrFull(shortList);
-//
+    
+    if (shortList.isEmpty())
+    {
+        cout << "List is empty" << endl;
+    }
+    else if (shortList.isFull())
+    {
+        cout << "List is full" << endl;
+    }
+
     if (shortList.removeFront(dataOut))
     {
         shortList.display();
@@ -98,11 +107,9 @@ int main()
     }
     else
     {
-        cout << "Unable to insert the value 5 at index 1";
+        cout << "Unable to remove front";
     }
-//
-//    isEmptyOrFull(shortList);
-//
+
     if (shortList.removeBack(dataOut))
     {
         shortList.display();
@@ -115,11 +122,8 @@ int main()
     {
         cout << "Unable to remove back";
     }
-//
-//        isEmptyOrFull(shortList);
-//
-//
-    if (shortList.removeAtIndex(dataOut,0))
+
+    if (shortList.removeAtIndex(dataOut,1))
     {
         shortList.display();
         shortList.getSmallest(min);
@@ -131,28 +135,33 @@ int main()
     {
         cout << "Unable to insert the value 5 at index 1";
     }
-//
-//    isEmptyOrFull(shortList);
-//
-
-//
-//    isEmptyOrFull(shortList);
-//
-    if (shortList.retrieveFront(dataOut))
+    
+    if (shortList.remove(dataOut))
     {
         shortList.display();
         shortList.getSmallest(min);
-        cout<<"The front value is " << dataOut << endl;
+        cout<<"The value "<< dataOut << "has been removed" << endl;
         cout << endl << "capacity is " << shortList.getCapacity() << "\t numValues is "
         << shortList.getNumValues() << "\t smallest value is " << min << endl;
     }
     else
     {
-        cout << "Unable to retrieve the value 5 at index 1";
+        cout << "Unable to remove the value";
     }
-//
-//    isEmptyOrFull(shortList);
-//
+    
+    if (shortList.retrieveFront(dataOut))
+    {
+        shortList.display();
+        shortList.getSmallest(min);
+       
+        cout << endl << "capacity is " << shortList.getCapacity() << "\t numValues is "
+        << shortList.getNumValues() << "\t smallest value is " << min << endl;
+    }
+    else
+    {
+        cout << "Unable to retrieve the front value";
+    }
+
     if (shortList.retrieveBack(dataOut))
     {
         shortList.display();
@@ -163,26 +172,10 @@ int main()
     }
     else
     {
-        cout << "Unable to retrieve the value 5 at index 1";
+        cout << "Unable to retrieve the back value";
     }
-//
-//    isEmptyOrFull(shortList);
-//
-    if (shortList.retrieveBack(dataOut))
-    {
-        shortList.display();
-        shortList.getSmallest(min);
-        cout << endl << "capacity is " << shortList.getCapacity() << "\t numValues is "
-        << shortList.getNumValues() << "\t smallest value is " << min << endl;
-    }
-    else
-    {
-        cout << "Unable to insert the value 5 at index 1";
-    }
-//
-//    isEmptyOrFull(shortList);
-//
-    if (shortList.retrieveAtIndex(dataOut,1))
+    
+    if (shortList.retrieveAtIndex(dataOut,0))
     {
         shortList.display();
         shortList.getSmallest(min);
@@ -192,12 +185,9 @@ int main()
     }
     else
     {
-        cout << "Unable to insert the value 5 at index 1";
+        cout << "Unable to retrieve at index 1";
     }
-//
-//    isEmptyOrFull(shortList);
-//
-    dataOut = 10;
+    
     if (shortList.retrieve(dataOut))
     {
         shortList.display();
@@ -210,9 +200,7 @@ int main()
     {
         cout << "Unable to retrieve the value " << dataOut << endl;
     }
-//
-//    isEmptyOrFull(shortList);
-//
+    
     if (shortList.updateFront(3))
     {
         shortList.display();
@@ -223,11 +211,9 @@ int main()
     }
     else
     {
-        cout << "Unable to update the list at front";
+        cout << "Unable to update the front value";
     }
-//
-//    isEmptyOrFull(shortList);
-//
+    
     if (shortList.updateBack(3))
     {
         shortList.display();
@@ -238,16 +224,14 @@ int main()
     }
     else
     {
-        cout << "Unable to updTE THE LIST AT BACK";
+        cout << "Unable to update the back value";
     }
-//
-//    isEmptyOrFull(shortList);
-//
-    dataIn = 3;
-    if (shortList.updateAtIndex(dataIn,1))
+    
+    if (shortList.updateAtIndex(3,1))
     {
         shortList.display();
         shortList.getSmallest(min);
+    
         cout << endl << "capacity is " << shortList.getCapacity() << "\t numValues is "
         << shortList.getNumValues() << "\t smallest value is " << min << endl;
     }
@@ -255,10 +239,10 @@ int main()
     {
         cout << "Unable to updte at index 1";
     }
-//
-//    isEmptyOrFull(shortList);
-//
-    dataIn = 5;
+
+    cout << " What value would you like to update? \t";
+    cin>>dataIn;
+    
     if (shortList.update(dataIn))
     {
         shortList.display();
@@ -271,31 +255,7 @@ int main()
     {
         cout << "Unable to update value"<< endl;
     }
-    dataOut = 3;
-    if (shortList.remove(dataOut))
-    {
-        shortList.display();
-        shortList.getSmallest(min);
-        cout<<"The value "<< dataOut << "has been removed" << endl;
-        cout << endl << "capacity is " << shortList.getCapacity() << "\t numValues is "
-        << shortList.getNumValues() << "\t smallest value is " << min << endl;
-    }
-    else
-    {
-        cout << "Unable to remove the value 3 ";
-    }
-//
-//    if (shortList.isEmpty())
-//    {
-//        cout << "List is empty" << endl;
-//    }
-//    else if (shortList.isFull())
-//    {
-//        cout << "List is full" << endl;
-//    }
-}
-void isEmptyOrFull(AList<short> shortList)
-{
+    
     if (shortList.isEmpty())
     {
         cout << "List is empty" << endl;
@@ -303,6 +263,11 @@ void isEmptyOrFull(AList<short> shortList)
     else if (shortList.isFull())
     {
         cout << "List is full" << endl;
+    }
+    
+    if (shortList.clear())
+    {
+        cout << "The list is clear" <<endl;
     }
 }
 //*****************************************************************************************************

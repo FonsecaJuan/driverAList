@@ -261,15 +261,15 @@ template <typename TYPE>
 bool AList <TYPE> :: remove(TYPE &dataOut)
 {
     bool success = false;
-    int indexOfValueToDelete = -1;
-    
+    int indexDeleted = -1;
     int i = 0;
+    
     while (success == false)
     {
         if (list[i] == dataOut)
         {
             dataOut = list[i];
-            indexOfValueToDelete = i;
+            indexDeleted = i;
             numValues--;
             success = true;
         }
@@ -277,13 +277,13 @@ bool AList <TYPE> :: remove(TYPE &dataOut)
     }
     if (success)
     {
-        for (int j = indexOfValueToDelete; j < numValues; j++)
+        for (int j = indexDeleted; j < numValues; j++)
         {
             list[j] = list[j + 1];
         }
     }
     
-    return success;//esta funcion esta mala no esta borrando nada tienes que hacer un foor loop hasta que encuenrtres el valor que estas buscando
+    return success;
 }
 
 //*****************************************************************************************************
@@ -339,17 +339,17 @@ bool AList <TYPE> :: retrieveAtIndex(TYPE & dataOut, int index)const
 template <typename TYPE>
 bool AList <TYPE> :: retrieve(TYPE &dataOut)const
 {
-    bool check = false;
+    bool success = false;
     
     for (int i = 0; i < numValues; i++ )
     {
         if (list[i] == dataOut)
         {
             dataOut = list[i];
-            check = true;
+            success = true;
         }
     }
-    return check ;
+    return success;
 }
 
 //*****************************************************************************************************
