@@ -260,9 +260,30 @@ bool AList <TYPE> :: removeAtIndex(TYPE & dataOut, int index)
 template <typename TYPE>
 bool AList <TYPE> :: remove(TYPE &dataOut)
 {
-    bool success = true;
-    dataOut = list[0];
-    return success;
+    bool success = false;
+    int indexOfValueToDelete = -1;
+    
+    int i = 0;
+    while (success == false)
+    {
+        if (list[i] == dataOut)
+        {
+            dataOut = list[i];
+            indexOfValueToDelete = i;
+            numValues--;
+            success = true;
+        }
+        i++;
+    }
+    if (success)
+    {
+        for (int j = indexOfValueToDelete; j < numValues; j++)
+        {
+            list[j] = list[j + 1];
+        }
+    }
+    
+    return success;//esta funcion esta mala no esta borrando nada tienes que hacer un foor loop hasta que encuenrtres el valor que estas buscando
 }
 
 //*****************************************************************************************************
